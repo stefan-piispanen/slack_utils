@@ -51,3 +51,9 @@ def test_bot_id():
 
 def test_no_bot_id():
     assert faulty_body.bot_id is None
+
+def test_private_metadata():
+    assert isinstance(body.private_metadata, dict)
+
+def test_no_private_metadata():
+    assert faulty_body.private_metadata is None
