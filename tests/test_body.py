@@ -6,7 +6,9 @@ body = Body({
         "view": {
             "view": {},
             "id": "1234",
-            "blocks": []
+            "blocks": [],
+            "bot_id": "1234",
+            "private_metadata": {},
             },
         "trigger_id": "1234",
         })
@@ -43,3 +45,9 @@ def test_blocks():
 
 def test_no_blocks():
     assert faulty_body.blocks is None
+
+def test_bot_id():
+    assert body.bot_id == "1234"
+
+def test_no_bot_id():
+    assert faulty_body.bot_id is None
