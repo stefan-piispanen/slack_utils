@@ -53,7 +53,7 @@ class Body:
 
     @property
     def view(self):
-        return self.body.get("view", {})
+        return self.body.get("view")
 
     @property
     def token(self):
@@ -61,7 +61,7 @@ class Body:
     
     @property
     def view_id(self):
-        return self.body.get("view", {}).get("id", "")
+        return self.body.get("view", {}).get("id")
 
     @property
     def trigger_id(self):
