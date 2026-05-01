@@ -1,3 +1,25 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "slack_utils"
+version = "0.0.1"
+description = "Helpers and utilities for Slack Bolt for Python applications"
+
+authors = [
+    {name = "Stefan", email = "stefan@ponnykatt.se"}
+]
+
+maintainers = [
+    {name = "Stefan", email = "stefan@ponnykatt.se"}
+]
+
+requires-python = ">=3.13"
+
+[tool.setuptools]
+packages = ["slack_utils"]
+
 [project.optional-dependencies]
 dev = [
     "pytest",
