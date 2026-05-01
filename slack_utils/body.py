@@ -15,28 +15,25 @@ class Body:
         if not value_id:
             raise ValueError("Value ID cannot be empty")
 
-        # TODO: fix the exception handling
-
         # this level only has the block id
-        try:
-            block_id_level = self.values.get(value_id)
-        except Exception as e:
+        block_id_level = self.values.get(value_id)
+        if not block_id_level:
             raise ValueError(f"No block found for {value_id}")
+
         # this level only has the action id
         try:
             key = list(block_id_level.keys())[0]
-        except Exception as e:
-            raise ValueError("Could not extract the key")
+        except IndexError as e:
+            raise IndexError("Could not extract the key") from e
 
-        try:
-            action_id_level = block_id_level.get(value_id)
-        except Exception as e:
+        action_id_level = block_id_level.get(key)
+        if not action_id_level:
             raise ValueError("Could not get the action_id")
 
         try:
             vtype = action_id_level["type"]
         except KeyError as e:
-            raise ValueError("Could not get the value type")
+            raise ValueError("Could not get the value type") from e
 
         match vtype:
             case "datepicker":
@@ -44,7 +41,13 @@ class Body:
             case "plain_text_input":
                 return action_id_level["value"]
             case "static_select":
-                return action_id_level["selected_option"]["value"]
+                option = action_id_level.get("selected_option")
+                if not option:
+                    raise ValueError("Could not get the selected option from the static select")
+                value = option.get("value")
+                if value is None:
+                    raise ValueError("Could not get the value from the static select")
+                return value
             case _:
                 raise ValueError(f"This type is not implemented yet: {vtype}")
 
