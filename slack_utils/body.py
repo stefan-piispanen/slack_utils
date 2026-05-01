@@ -82,7 +82,8 @@ class Body:
         if metadata:
             return json.loads(metadata)
         else:
-            return {}
+            # this will be None
+            return metadata
 
     @property
     def team_domain(self) -> str:
