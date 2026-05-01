@@ -65,7 +65,7 @@ class Body:
 
     @property
     def trigger_id(self):
-        return self.body.get("trigger_id", "")
+        return self.body.get("trigger_id")
 
     @property
     def blocks(self) -> list:
