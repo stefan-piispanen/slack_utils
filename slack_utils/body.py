@@ -129,7 +129,7 @@ class Body:
     @property
     def value(self):
         actions = self.body.get("actions")
-        return json.loads(actions)[0].get("value") if actions else None
+        return json.loads(actions[0].get("value")) if actions else None
 
     @property
     def message(self):
