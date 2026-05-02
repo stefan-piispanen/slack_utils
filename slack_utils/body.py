@@ -124,7 +124,7 @@ class Body:
     @property
     def actions(self) -> dict:
         actions = self.body.get("actions")
-        return actions[0] if actions else {}
+        return actions[0] if actions else None
 
     @property
     def value(self):
